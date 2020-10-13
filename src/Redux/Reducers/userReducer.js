@@ -1,6 +1,7 @@
 export default function reducer(
   state = {
     userDetails: null,
+    movies: null
   },
   action
 ) {
@@ -32,6 +33,18 @@ export default function reducer(
         cart: [],
         paymentHistory: [],
         paymentDetail: []
+      };
+    }
+
+    case 'GET_MOVIES_PROCESSING': {
+      return { ...state, fetching: true };
+    }
+    case 'GET_MOVIES_PROCESSED': {
+      return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        movies: action.payload,
       };
     }
 

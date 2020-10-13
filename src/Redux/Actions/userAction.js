@@ -5,17 +5,16 @@ import { Alert, AsyncStorage } from 'react-native'
 
 
 
-
+const url = 'https://movielibrary90.herokuapp.com/'
 
 
 export function login(email, password) {
   return function (dispatch) {
     dispatch({ type: "LOGIN_PROCESSING" });
-    // const formData = new FormData();
-    // formData.append("email", email),
-    // formData.append("password", password),
-    // console.log(`https://churppy.com/api/v1/login?email=${email}&password=${password}`)
-    axios.post(`https://churppy.com/api/v1/login?email=${email}&password=${password}`)
+    const formData = new FormData();
+    formData.append("email", email),
+    formData.append("password", password),
+    axios.post(`baseUrl?email=${email}&password=${password}`)
       .then(async (response) => {
         dispatch({ type: "LOGIN_PROCESSED", payload: response.data });
         if (response.data.status === "success") {
@@ -47,7 +46,7 @@ export function login(email, password) {
 export function signup(fname, lname, phone, email, password) {
   return function (dispatch) {
     dispatch({ type: "LOGIN_PROCESSING" });
-    axios.post(`https://churppy.com/api/v1/customer-register?firstname=${fname}&lastname=${lname}&email=${email}&user_phone=${phone}&password=${password}`)
+    axios.post(`baseUrl?firstname=${fname}&lastname=${lname}&email=${email}&user_phone=${phone}&password=${password}`)
       .then((response) => {
         dispatch({ type: "LOGIN_PROCESSED", payload: response.data });
         if (response.data.status === "success") {
@@ -66,3 +65,14 @@ export function signup(fname, lname, phone, email, password) {
 
 
 
+export function getMoviesList() {
+  return (dispatch) => {
+    dispatch({ type: "GET_MOVIES_PROCESSING" })
+    axios.get(`${url}nodeapi`)
+      .then(result => {
+        console.log(result)
+        dispatch({ type: "GET_MOVIES_PROCESSED", payload: result.data })
+      })
+      .catch(err => console.log(err))
+  }
+}
