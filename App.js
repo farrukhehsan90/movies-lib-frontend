@@ -21,21 +21,19 @@ import { Provider } from 'react-redux';
 import store from './src/Redux/Store/store'
 import NavigtionService from './src/Navigation/NavigationService';
 
-export default class App extends React.Component {
-  
+const App = () => {
 
-
-  render() {
-    return (
-      <View style={{ flex:1 }}>
-        <Provider store={store}>
-          <Navigator 
+  return (
+    <View style={{ flex: 1 }}>
+      <Provider store={store}>
+        <Navigator
           ref={(navigatorRef) => {
             NavigtionService.setTopLevelNavigator(navigatorRef);
-            }} />
-          </Provider>
-      </View>
-    );
-  }
-};
+          }} />
+      </Provider>
+    </View>
+  );
+}
+
+export default App;
 

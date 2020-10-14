@@ -1,9 +1,9 @@
 import { createAppContainer, DrawerItems, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack'
-import Login from '../Components/Login/login'
-import Signup from '../Components/Signup/signup'
-import Dashboard from '../Components/Screen/dashboard'
-import MovieDetail from "../Components/Screen/movieDetails";
+import Login from '../Components/Login'
+import Signup from '../Components/Signup'
+import Dashboard from '../Components/Main/Dashboard'
+import MovieDetail from "../Components/Main/MovieDetails";
 
 
 const AuthStack = createStackNavigator({
